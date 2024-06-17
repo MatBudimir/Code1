@@ -29,3 +29,4 @@
 ### GitHub
 
 I learned how to invite collaborators and how to create markdown files.
+I learned how to make folders.
