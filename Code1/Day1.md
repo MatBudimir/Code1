@@ -32,3 +32,4 @@ I learned how to invite collaborators and how to create markdown files.
 I learned how to make folders.
 
 I cloned a repository and pushed the changes to GitHub.
+I merged branches.
