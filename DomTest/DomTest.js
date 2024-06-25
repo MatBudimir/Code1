@@ -1,13 +1,4 @@
 "use strict";
-console.log("Hello");
-//DOM Manipulation
-let spanElement = document.querySelector("#idHello");
-spanElement.textContent = "Have a";
-let newSpan = document.createElement("span");
-newSpan.textContent = "nice day!";
-document.body.appendChild(newSpan);
-newSpan.style.backgroundColor = "";
-console.log(newSpan);
 //Array
 let bodyContent = [
     "REDRUM", "CocaCola", "Code1", "ZeroSugar", "Goblin", "Cthulhu"
@@ -25,10 +16,22 @@ do {
     newSpan.style.color = "#" + randomColor;
     //Random Position
     newSpan.style.position = "absolute";
-    newSpan.style.left = Math.random() * window.innerWidth + "px";
-    newSpan.style.top = Math.random() * window.innerHeight + "px";
+    newSpan.style.left = Math.random() * 99 + "%";
+    newSpan.style.top = Math.random() * 99 + "%";
+    console.log(newSpan);
     //Random Size
     newSpan.style.fontSize = Math.random() * window.innerWidth * 0.3 + "px";
     //Append New Span
     document.body.appendChild(newSpan);
-} while (i < 50);
+} while (i < 12);
+//Events#
+document.body.addEventListener("click", handleClick);
+function handleClick(_event) {
+    let target = _event.target;
+    if (target == document.body)
+        return;
+    target.textContent = bodyContent[Math.floor(Math.random() * bodyContent.length)];
+    target.style.color = "red";
+    target.style.fontSize = Math.random() * window.innerWidth * 0.3 + "px";
+    console.log(_event.currentTarget);
+}
