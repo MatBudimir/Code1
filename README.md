@@ -1,12 +1,13 @@
-- [Hello](#hello)
-- [Pages](#pages)
-
-
-
 # Hello
 
 This is my Introduction page. :)
 
 # Pages
 
-Here's a list of pages:
+### Team Page
+
+https://matbudimir.github.io/0Sugar/
+
+### Table of Contents
+
+https://matbudimir.github.io/Code1/
