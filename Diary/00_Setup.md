@@ -1,6 +1,6 @@
-## Day 1
+# Setup
 
-### Setup
+## Tools
 
 * Git
 
@@ -25,10 +25,3 @@
 * GitGraph
   
 	Provides an interactive visual representation of your Git repository's branch structure.
-
-### GitHub
-
-I learned how to invite collaborators and how to create markdown files.
-I learned how to make folders.
-
-I cloned a repository and pushed the changes to GitHub.
