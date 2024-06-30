@@ -23,18 +23,12 @@ body {
     padding-bottom: 2em;
 }
 
+.break {
+    color: #333;
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
 
 footer {
     font-family: 'Courier New', Courier, monospace;
-}
-
-hr {
-    height:3px;
-    border-width:0;
-    color: #333;
-    background-color:#333;
-    border-color:#333;
-    margin-bottom: 1em;
-    margin-top: 1em;
-    width: 33%;
 }
