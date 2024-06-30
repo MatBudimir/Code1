@@ -1,39 +1,39 @@
 ## TSC Setup
 
-(npx) tsc --init
-(npx) tsc --watch
+    (npx) tsc --init
+    (npx) tsc --watch
 
 ## Arrays
 
 ### Simple Array
 
-let array: string[] = [string0, string1, string2, string3, stringN];
+    let array: string[] = [string0, string1, string2, string3, stringN];
 
 ### Associative Array
 
-let array: {[key: string]: string;} =
-{
-    key0: "string",
-    key1: "string",
-    key2: "string",
-    keyN: "string",
-}
+    let array: {[key: string]: string;} =
+    {
+        key0: "string",
+        key1: "string",
+        key2: "string",
+        keyN: "string",
+    }
 
 ### Nested Array (Interface)
 
-interface nestedArray
-{  
+    interface nestedArray
+    {  
     key_nA: string;
     key_nA_1: Array2[]; 
-}
+    }
 
-interface Array2
-{
+    interface Array2
+    {
     key_array2: string;
     key_array2_1: string;
-}
+    }
 
-let Array: { [key: string]: nestedArray; } = {
+    let Array: { [key: string]: nestedArray; } = {
     "key": {
         "key_nA": "string",
         [{
@@ -41,23 +41,23 @@ let Array: { [key: string]: nestedArray; } = {
             "key_array2_1": "string"
         }]
     }
-} 
+    } 
 
 ## If/else & switch/case
 
 ### if/else
 
-if (condition){
-    true;
-} else {
-    false;
-}
+    if (condition){
+        true;
+    } else {
+        false;
+    }
 
 ### switch/case
 
-let variable: string = promt(array)!;
-swtich (variable)
-{
+    let variable: string = promt(array)!;
+    swtich (variable)
+    {
     case "case1":
         [insert task];
         break;
@@ -73,53 +73,53 @@ swtich (variable)
     default:
         [insert task];
         break;
-}
+    }
 
 ## Functions
 
 ### Setup Function
 
-function Function(): void {
-    [insert tasks];
-}
+    function Function(): void {
+        [insert tasks];
+    }
 
 ### Call Function
 
-Function();
+    Function();
 
 ## Loops
 
 ### do / while
 
-let i = 0;
-do {
-    i++;
-} while (i < number)
+    let i = 0;
+    do {
+        i++;
+    } while (i < number)
 
 ### while
 
-while (let i = 0; i < number, i++) {
+    while (let i = 0; i < number, i++) {
 
-}
+    }
 
 ## Events
 
 ### handleClick
 
-document.body.addEventListener("click", handleClick);
+    document.body.addEventListener("click", handleClick);
 
-function handleClick(_event: Event): void 
-{
+    function handleClick(_event: Event): void 
+    {
     let target: HTMLElement = <HTMLElement>_event.target;
     if (target == document.body)
         return;
-}
+    }
 
 ### handleLoad
 
-window.addEventListener("load", handleLoad);
+    window.addEventListener("load", handleLoad);
 
- function handleLoad(_event: Event): void
+     function handleLoad(_event: Event): void
     {
         let var: HTMLElement = <HTMLElement>document.querySelector("div#tag");
         var.addEventListener("click", functionA);
@@ -128,25 +128,25 @@ window.addEventListener("load", handleLoad);
 
 ### MouseEvent
 
-function functionA(_event: MouseEvent): void {}
+    function functionA(_event: MouseEvent): void {}
 
 ### KeyboardEvent
 
-function functionB(_event: KeyboardEvent): void {}
+    function functionB(_event: KeyboardEvent): void {}
 
 ## Classes
 
 ### Class
 
-interface ClassArray
-{
+    interface ClassArray
+    {
     var: string;
     var2: booleab;
     var3: number;
-}
+    }
 
-class Class
-{
+    class Class
+    {
     private string: string;
     private number: number;
     private boolean: boolean;
@@ -168,37 +168,37 @@ class Class
             var3: 0,
         });
     }
-}
+    }
 
 ### Inventory
 
-´´interface Item
-{
-    name: string;
-    type: string;
-    amount: number;
-}´´
-
-´´class Inventory
-{
-    private items: Item[] = [];
-
-    addItem(name: string): void
+    interface Item
     {
-        this.items.push({
-            name,
-            type: "",
-            amount: 0
-        });
+        name: string;
+        type: string;
+        amount: number;
     }
 
-    removeItem(name: string): void
+    class Inventory
     {
-        this.items = this.items.filter(item => item.name !== name);
-    }
+        private items: Item[] = [];
 
-    hasItem(name: string): boolean
-    {
-        return this.items.some(item => item.name === name);
+        addItem(name: string): void
+        {
+            this.items.push({
+                name,
+                type: "",
+                amount: 0
+            });
+        }
+
+        removeItem(name: string): void
+        {
+            this.items = this.items.filter(item => item.name !== name);
+        }
+
+        hasItem(name: string): boolean
+        {
+            return this.items.some(item => item.name === name);
+        }
     }
-}´´
