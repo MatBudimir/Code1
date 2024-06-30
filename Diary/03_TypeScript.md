@@ -1,4 +1,11 @@
-## TSC Setup
+## Setup
+
+### Github
+
+    git config --global user.name "John Doe"
+    git config --global user.email johndoe@example.com
+
+### TSC
 
     (npx) tsc --init
     (npx) tsc --watch
