@@ -98,6 +98,10 @@ do {
 
 ### while
 
+while (let i = 0; i < number, i++) {
+
+}
+
 ## Events
 
 ### handleClick
@@ -131,6 +135,40 @@ function functionA(_event: MouseEvent): void {}
 function functionB(_event: KeyboardEvent): void {}
 
 ## Classes
+
+### Class
+
+interface ClassArray
+{
+    var: string;
+    var2: booleab;
+    var3: number;
+}
+
+class Class
+{
+    private string: string;
+    private number: number;
+    private boolean: boolean;
+    private array: ClassArray[] = [];
+
+    constructor(private construct: {[key: string]})
+    {
+        this.string = "string";
+        this.number = 0;
+        this.boolean = false;
+        this.array = new ClassArray();
+    }
+
+    addToArray(name: string): void
+    { this.array.push
+        ({
+            var: "",
+            var2: false,
+            var3: 0,
+        });
+    }
+}
 
 ### Inventory
 
