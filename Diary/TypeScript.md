@@ -1,0 +1,166 @@
+## TSC Setup
+
+(npx) tsc --init
+(npx) tsc --watch
+
+## Arrays
+
+### Simple Array
+
+let array: string[] = [string0, string1, string2, string3, stringN];
+
+### Associative Array
+
+let array: {[key: string]: string;} =
+{
+    key0: "string",
+    key1: "string",
+    key2: "string",
+    keyN: "string",
+}
+
+### Nested Array (Interface)
+
+interface nestedArray
+{  
+    key_nA: string;
+    key_nA_1: Array2[]; 
+}
+
+interface Array2
+{
+    key_array2: string;
+    key_array2_1: string;
+}
+
+let Array: { [key: string]: nestedArray; } = {
+    "key": {
+        "key_nA": "string",
+        [{
+            "key_array2": "string",
+            "key_array2_1": "string"
+        }]
+    }
+} 
+
+## If/else & switch/case
+
+### if/else
+
+if (condition){
+    true;
+} else {
+    false;
+}
+
+### switch/case
+
+let variable: string = promt(array)!;
+swtich (variable)
+{
+    case "case1":
+        [insert task];
+        break;
+    case "case2":
+        [insert task];
+        break;
+    case "case3":
+        [insert task];
+        break;
+    case "caseN":
+        [insert task];
+        break;
+    default:
+        [insert task];
+        break;
+}
+
+## Functions
+
+### Setup Function
+
+function Function(): void {
+    [insert tasks];
+}
+
+### Call Function
+
+Function();
+
+## Loops
+
+### do / while
+
+let i = 0;
+do {
+    i++;
+} while (i < number)
+
+### while
+
+## Events
+
+### handleClick
+
+document.body.addEventListener("click", handleClick);
+
+function handleClick(_event: Event): void 
+{
+    let target: HTMLElement = <HTMLElement>_event.target;
+    if (target == document.body)
+        return;
+}
+
+### handleLoad
+
+window.addEventListener("load", handleLoad);
+
+ function handleLoad(_event: Event): void
+    {
+        let var: HTMLElement = <HTMLElement>document.querySelector("div#tag");
+        var.addEventListener("click", functionA);
+        document.addEventListener("keydown", functionB);
+    }
+
+### MouseEvent
+
+function functionA(_event: MouseEvent): void {}
+
+### KeyboardEvent
+
+function functionB(_event: KeyboardEvent): void {}
+
+## Classes
+
+### Inventory
+
+interface Item
+{
+    name: string;
+    type: string;
+    amount: number;
+}
+
+class Inventory
+{
+    private items: Item[] = [];
+
+    addItem(name: string): void
+    {
+        this.items.push({
+            name,
+            type: "",
+            amount: 0
+        });
+    }
+
+    removeItem(name: string): void
+    {
+        this.items = this.items.filter(item => item.name !== name);
+    }
+
+    hasItem(name: string): boolean
+    {
+        return this.items.some(item => item.name === name);
+    }
+}
