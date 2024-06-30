@@ -177,9 +177,9 @@ class Class
     name: string;
     type: string;
     amount: number;
-}
+}´´
 
-class Inventory
+´´class Inventory
 {
     private items: Item[] = [];
 
