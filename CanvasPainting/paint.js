@@ -46,8 +46,8 @@ for (let b = 0; b < 3; b++) {
     clouds.push({
         positionX: Math.random() * 1920,
         positionY: Math.random() * 100 + 100,
-        scaleX: Math.random() * 1 + 5,
-        scaleY: Math.random() * 1 + 5,
+        scaleX: Math.random() * 1 + 4,
+        scaleY: Math.random() * 1 + 7,
         cloudD: Math.random() * 25 + 35,
         color: "#f5f5f5",
     });
