@@ -41,75 +41,48 @@ do {
     ctx.fillStyle = "#ffffe0";
     ctx.fill(pathSun);
 } while (s < 1);
-let tree = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let tree2 = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let tree3 = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let tree4 = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let tree5 = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let tree6 = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 150 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let tree7 = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: Math.random() * 1 + 1,
-    scaleY: Math.random() * 1 + 1,
-    leaves: Math.random() * 25 + 35,
-    color: "#80755a",
-    hasLeaves: true,
-};
-let trees = [tree, tree2, tree3, tree4, tree5, tree6, tree7];
+let clouds = [];
+for (let b = 0; b < 3; b++) {
+    clouds.push({
+        positionX: Math.random() * 1920,
+        positionY: Math.random() * 100 + 100,
+        scaleX: Math.random() * 1 + 5,
+        scaleY: Math.random() * 1 + 5,
+        cloudD: Math.random() * 25 + 35,
+        color: "#f5f5f5",
+    });
+}
+function drawCloud() {
+    for (let c = 0; c < trees.length; c++) {
+        let pathCloud = new Path2D();
+        pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+        ctx.fillStyle = trees[1].color;
+        ctx.fill(pathCloud);
+        for (let cl = 0; cl < clouds[c].cloudD; cl++) {
+            let pathCD = new Path2D;
+            pathCD.ellipse(clouds[c].positionX + (Math.random() * 200) - (Math.random() * 200), clouds[c].positionY + (Math.random() * 100) - (Math.random() * 75), 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+            ctx.fillStyle = "#f5f5f5";
+            ctx.fill(pathCD);
+        }
+    }
+}
+let trees = [];
+for (let b = 0; b < 9; b++) {
+    trees.push({
+        positionX: Math.random() * 1920,
+        positionY: Math.random() * 50 + 500,
+        scaleX: Math.random() * 1 + 1,
+        scaleY: Math.random() * 1 + 1,
+        leaves: Math.random() * 25 + 35,
+        color: "#80755a",
+        hasLeaves: true,
+    });
+}
 function drawTree() {
-    let pathTree = new Path2D();
     for (let t = 0; t < trees.length; t++) {
+        let pathTree = new Path2D();
         pathTree.rect(trees[t].positionX, trees[t].positionY, 10 * trees[t].scaleX, 500 * trees[t].scaleY);
-        ctx.fillStyle = tree.color;
+        ctx.fillStyle = trees[1].color;
         ctx.fill(pathTree);
         for (let l = 0; l < trees[t].leaves; l++) {
             let pathLeaf = new Path2D;
@@ -120,3 +93,4 @@ function drawTree() {
     }
 }
 drawTree();
+drawCloud();

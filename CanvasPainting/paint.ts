@@ -47,6 +47,45 @@ do {
     ctx.fill(pathSun);
 } while (s < 1);
 
+// Clouds
+interface CloudAttributes {
+    positionX: number;
+    positionY: number;
+    scaleX: number;
+    scaleY: number;
+    cloudD: number;
+    color: string;
+}
+
+let clouds: CloudAttributes[] = [];
+
+for (let b: number = 0; b < 3; b++){
+    clouds.push({
+        positionX: Math.random() * 1920,
+        positionY: Math.random() * 100 + 100,
+        scaleX: Math.random() * 1 + 5,
+        scaleY: Math.random() * 1 + 5,
+        cloudD: Math.random() * 25 + 35,
+        color: "#f5f5f5",
+    });
+}
+
+function drawCloud(): void {
+    for (let c: number = 0; c < trees.length; c++) {
+        let pathCloud = new Path2D();
+        pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+        ctx.fillStyle = trees[1].color;
+        ctx.fill(pathCloud);
+
+        for (let cl: number = 0; cl < clouds[c].cloudD; cl++) {
+            let pathCD = new Path2D;
+            pathCD.ellipse(clouds[c].positionX + (Math.random() * 200) - (Math.random() * 200), clouds[c].positionY + (Math.random() * 100) - (Math.random() * 75), 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+            ctx.fillStyle = "#f5f5f5";
+            ctx.fill(pathCD);
+        }
+    }
+}
+
 interface TreeAttributes {
     positionX: number;
     positionY: number;
@@ -57,83 +96,25 @@ interface TreeAttributes {
     hasLeaves: boolean;
 }
 
-let tree: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-}
+let trees: TreeAttributes[] = [];
 
-let tree2: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
+for (let b: number = 0; b < 9; b++){
+    trees.push({
+        positionX: Math.random() * 1920,
+        positionY: Math.random() * 50 + 500,
+        scaleX: Math.random() * 1 + 1,
+        scaleY: Math.random() * 1 + 1,
+        leaves: Math.random() * 25 + 35,
+        color: "#80755a",
+        hasLeaves: true,
+    });
 }
-
-let tree3: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-}
-
-let tree4: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-}
-
-let tree5: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-}
-
-let tree6: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 150 + 500,
-    scaleX: 1,
-    scaleY: 1,
-    leaves: Math.random() * 15 + 15,
-    color: "#80755a",
-    hasLeaves: true,
-}
-
-let tree7: TreeAttributes = {
-    positionX: Math.random() * 1920,
-    positionY: Math.random() * 50 + 500,
-    scaleX: Math.random() * 1 + 1,
-    scaleY: Math.random() * 1 + 1,
-    leaves: Math.random() * 25 + 35,
-    color: "#80755a",
-    hasLeaves: true,
-}
-
-let trees: TreeAttributes[] = [tree, tree2, tree3, tree4, tree5, tree6, tree7];
 
 function drawTree(): void {
-    let pathTree = new Path2D();
     for (let t: number = 0; t < trees.length; t++) {
+        let pathTree = new Path2D();
         pathTree.rect(trees[t].positionX, trees[t].positionY, 10 * trees[t].scaleX, 500 * trees[t].scaleY);
-        ctx.fillStyle = tree.color;
+        ctx.fillStyle = trees[1].color;
         ctx.fill(pathTree);
 
         for (let l: number = 0; l < trees[t].leaves; l++) {
@@ -145,3 +126,4 @@ function drawTree(): void {
     }
 }
     drawTree();
+    drawCloud();
