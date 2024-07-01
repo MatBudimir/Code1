@@ -2,8 +2,8 @@
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
 function drawCoordinateSystem(ctx) {
-    const notchLength = 10;
-    const axisLength = 200;
+    let notchLength = 10;
+    let axisLength = 200;
     ctx.beginPath();
     ctx.moveTo(0, 0);
     ctx.lineTo(axisLength, 0);

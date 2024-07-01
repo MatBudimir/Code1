@@ -3,8 +3,8 @@ const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
 
 
     function drawCoordinateSystem(ctx: CanvasRenderingContext2D) {
-        const notchLength = 10;
-        const axisLength = 200;
+        let notchLength = 10;
+        let axisLength = 200;
 
         ctx.beginPath();
         ctx.moveTo(0, 0);
