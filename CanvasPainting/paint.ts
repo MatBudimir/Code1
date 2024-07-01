@@ -60,7 +60,7 @@ interface CloudAttributes {
 let clouds: CloudAttributes[] = [];
 type RGB = `rgb(${number}, ${number}, ${number})`;
 
-for (let b: number = 0; b < 3; b++) {
+for (let w: number = 0; w < 3; w++) {
     clouds.push({
         positionX: Math.random() * 1920,
         positionY: Math.random() * 100 + 100,
@@ -72,10 +72,10 @@ for (let b: number = 0; b < 3; b++) {
 }
 
 function drawCloud(): void {
-    for (let c: number = 0; c < trees.length; c++) {
+    for (let c: number = 0; c < clouds.length; c++) {
         let pathCloud = new Path2D();
         pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
-        ctx.fillStyle = trees[1].color;
+        ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
         ctx.fill(pathCloud);
 
         for (let cl: number = 0; cl < clouds[c].cloudD; cl++) {
@@ -105,7 +105,7 @@ let trees: TreeAttributes[] = [];
 for (let b: number = 0; b < 9; b++) {
     trees.push({
         positionX: Math.random() * 1920,
-        positionY: Math.random() * 50 + 500,
+        positionY: Math.random() * 200 + 400,
         scaleX: Math.random() * 1 + 1,
         scaleY: Math.random() * 1 + 1,
         leaves: Math.random() * 25 + 35,
@@ -133,5 +133,5 @@ function drawTree(): void {
     }
 }
 
-drawTree();
 drawCloud();
+drawTree();
