@@ -49,7 +49,7 @@ for (let b = 0; b < 3; b++) {
         scaleX: Math.random() * 1 + 4,
         scaleY: Math.random() * 1 + 7,
         cloudD: Math.random() * 25 + 35,
-        color: "#f5f5f5",
+        color: Math.random() * 25 + 205,
     });
 }
 function drawCloud() {
@@ -61,7 +61,7 @@ function drawCloud() {
         for (let cl = 0; cl < clouds[c].cloudD; cl++) {
             let pathCD = new Path2D;
             pathCD.ellipse(clouds[c].positionX + (Math.random() * 200) - (Math.random() * 200), clouds[c].positionY + (Math.random() * 100) - (Math.random() * 75), 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
-            ctx.fillStyle = "#f5f5f5";
+            ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
             ctx.fill(pathCD);
         }
     }
@@ -75,6 +75,9 @@ for (let b = 0; b < 9; b++) {
         scaleY: Math.random() * 1 + 1,
         leaves: Math.random() * 25 + 35,
         color: "#80755a",
+        colorR: Math.random() * 25 + 55,
+        colorG: Math.random() * 45 + 95,
+        colorB: Math.random() * 75 + 15,
         hasLeaves: true,
     });
 }
@@ -87,7 +90,7 @@ function drawTree() {
         for (let l = 0; l < trees[t].leaves; l++) {
             let pathLeaf = new Path2D;
             pathLeaf.ellipse(trees[t].positionX + (Math.random() * 100) - (Math.random() * 100), trees[t].positionY + (Math.random() * 150) - (Math.random() * 100), Math.random() * 50 + 25, Math.random() * 50 + 25, Math.PI / 2, 0, 2 * Math.PI);
-            ctx.fillStyle = "#507d2a";
+            ctx.fillStyle = "rgb(" + trees[t].colorR + ", " + trees[t].colorG + "," + trees[t].colorB + ")";
             ctx.fill(pathLeaf);
         }
     }
