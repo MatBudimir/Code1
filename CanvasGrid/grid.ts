@@ -75,3 +75,9 @@ const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
     ctx.translate(150, 150);
     drawSquare(ctx, "cyan");
     ctx.restore();
+
+    // Transform
+    ctx.save();
+    ctx.transform(1.5, 0, 0, 1.5, 100, 120);
+    drawSquare(ctx, "yellow");
+    ctx.restore();
