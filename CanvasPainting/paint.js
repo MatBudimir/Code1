@@ -100,7 +100,7 @@ let tree7 = {
     positionY: Math.random() * 50 + 500,
     scaleX: Math.random() * 1 + 1,
     scaleY: Math.random() * 1 + 1,
-    leaves: Math.random() * 15 + 15,
+    leaves: Math.random() * 25 + 35,
     color: "#80755a",
     hasLeaves: true,
 };
@@ -119,7 +119,4 @@ function drawTree() {
         }
     }
 }
-for (let x = 0; x < trees.length; x++) {
-    drawTree();
-    console.log(trees[x]);
-}
+drawTree();
