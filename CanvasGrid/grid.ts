@@ -8,9 +8,9 @@ const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
 
         ctx.beginPath();
         ctx.moveTo(0, 0);
-        ctx.lineTo(axisLength, 0); // x-axis
+        ctx.lineTo(axisLength, 0);
         ctx.moveTo(0, 0);
-        ctx.lineTo(0, axisLength); // y-axis
+        ctx.lineTo(0, axisLength);
 
         for (let i = 0; i <= axisLength; i += notchLength) {
             ctx.moveTo(i, -5);
@@ -59,4 +59,19 @@ const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
     ctx.translate(50, 100);
     ctx.rotate(Math.PI / 6);
     drawSquare(ctx, "red");
+    ctx.restore();
+
+    // Rotate ==> Translate
+    ctx.save();
+    ctx.rotate(Math.PI / 6);
+    ctx.translate(50, 100);
+    drawSquare(ctx, "purple");
+    ctx.restore();
+
+    // Rotate ==> Scale ==> Translate
+    ctx.save();
+    ctx.rotate(Math.PI / 6 * -1);
+    ctx.scale(0.75, 0.75);
+    ctx.translate(150, 150);
+    drawSquare(ctx, "cyan");
     ctx.restore();
