@@ -4,7 +4,7 @@ const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
 
     function drawCoordinateSystem(ctx: CanvasRenderingContext2D) {
         let notchLength = 10;
-        let axisLength = 200;
+        let axisLength = 300;
 
         ctx.beginPath();
         ctx.moveTo(0, 0);
