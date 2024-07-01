@@ -65,5 +65,5 @@ ctx.restore();
 // Transform
 ctx.save();
 ctx.transform(1.5, 0, 0, 1.5, 100, 120);
-drawSquare(ctx, "yellow");
+drawSquare(ctx, "brown");
 ctx.restore();
