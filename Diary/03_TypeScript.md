@@ -155,7 +155,6 @@
     function drawSquare(ctx: CanvasRenderingContext2D, color: string) {
         ctx.fillStyle = color;
         ctx.fillRect(0, 0, 50, 50);
-        console.log(`Current transformation matrix (${color}):`, ctx.getTransform());
     }
 
 ## Classes
