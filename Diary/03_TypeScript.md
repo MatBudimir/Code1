@@ -143,6 +143,21 @@
 
     function functionB(_event: KeyboardEvent): void {}
 
+## Canvas
+
+### Setup
+
+    const canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
+    const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
+
+### Draw
+
+    function drawSquare(ctx: CanvasRenderingContext2D, color: string) {
+        ctx.fillStyle = color;
+        ctx.fillRect(0, 0, 50, 50);
+        console.log(`Current transformation matrix (${color}):`, ctx.getTransform());
+    }
+
 ## Classes
 
 ### Class
