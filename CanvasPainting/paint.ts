@@ -106,7 +106,7 @@ for (let b: number = 0; b < 9; b++) {
     trees.push({
         positionX: Math.random() * 1920,
         positionY: Math.random() * 200 + 400,
-        scaleX: Math.random() * 1 + 1,
+        scaleX: Math.random() * 1 + 2,
         scaleY: Math.random() * 1 + 1,
         leaves: Math.random() * 25 + 35,
         color: "#80755a",
