@@ -6,6 +6,7 @@ drawBirds();
 function createBirds(_amount) {
     let birds = [];
     for (let i = 0; i < _amount; i++) {
+        console.log("ich bin neu");
         let bird = {
             x: Math.random() * 1920,
             y: Math.random() * 1080,
