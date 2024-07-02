@@ -10,7 +10,7 @@ interface Bird {
     dots: number,
 }
 
-let birds: Bird[] = createBirds(25);
+let birds: Bird[] = createBirds(21);
 drawBirds();
 
 function createBirds(_amount: number): Bird[] {
@@ -52,7 +52,7 @@ function drawBirds(): void {
 function updateBirds() {
     for (let i: number = 0; i < birds.length; i++) {
         birds[i].x += Math.random()*birds[i].speed+birds[i].speed;
-        if (birds[i].x > 1920) {
+        if (birds[i].x > canvas.width) {
             birds[i].x = -birds[i].size;
         }
     }

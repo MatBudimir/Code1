@@ -1,7 +1,7 @@
 "use strict";
 const canvas = document.getElementsByTagName("canvas")[0];
 const ctx = canvas.getContext("2d");
-let birds = createBirds(25);
+let birds = createBirds(21);
 drawBirds();
 function createBirds(_amount) {
     let birds = [];
@@ -39,7 +39,7 @@ function drawBirds() {
 function updateBirds() {
     for (let i = 0; i < birds.length; i++) {
         birds[i].x += Math.random() * birds[i].speed + birds[i].speed;
-        if (birds[i].x > 1920) {
+        if (birds[i].x > canvas.width) {
             birds[i].x = -birds[i].size;
         }
     }
