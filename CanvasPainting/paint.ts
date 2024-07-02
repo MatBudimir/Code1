@@ -29,31 +29,31 @@ interface CloudAttributes {
 let clouds: CloudAttributes[] = [];
 let cloudsBG: CloudAttributes[] = [];
 
-    // Clouds
-    for (let i: number = 0; i < 3; i++) {
-        clouds.push({
-            positionX: Math.random() * 1920,
-            positionY: Math.random() * 100 + 100,
-            scaleX: Math.random() * 1 + 4,
-            scaleY: Math.random() * 1 + 7,
-            cloudD: Math.random() * 25 + 35,
-            color: Math.random() * 25 + 205,
-            speed: 1,
-        });
-    }
+// Clouds
+for (let i: number = 0; i < 3; i++) {
+    clouds.push({
+        positionX: Math.random() * 1920,
+        positionY: Math.random() * 100 + 100,
+        scaleX: Math.random() * 1 + 4,
+        scaleY: Math.random() * 1 + 7,
+        cloudD: Math.random() * 25 + 35,
+        color: Math.random() * 25 + 205,
+        speed: 1,
+    });
+}
 
-    // Clouds
-    for (let i: number = 0; i < 8; i++) {
-        cloudsBG.push({
-            positionX: Math.random() * 1920,
-            positionY: Math.random() * 50 + 150,
-            scaleX: Math.random() * 1 + 2,
-            scaleY: Math.random() * 1 + 5,
-            cloudD: Math.random() * 25 + 75,
-            color: Math.random() * 25 + 175,
-            speed: 0.5,
-        });
-    }
+// Clouds
+for (let i: number = 0; i < 8; i++) {
+    cloudsBG.push({
+        positionX: Math.random() * 1920,
+        positionY: Math.random() * 50 + 150,
+        scaleX: Math.random() * 1 + 2,
+        scaleY: Math.random() * 1 + 5,
+        cloudD: Math.random() * 25 + 75,
+        color: Math.random() * 25 + 175,
+        speed: 0.5,
+    });
+}
 
 
 function drawClouds() {
@@ -242,8 +242,8 @@ let imgData: ImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 
 function updateClouds(_deltaTime: number) {
     for (let i: number = 0; i < clouds.length; i++) {
-        clouds[i].positionX += Math.random()*clouds[i].speed + clouds[i].speed;
-        cloudsBG[i].positionX += Math.random()*cloudsBG[i].speed + cloudsBG[i].speed;
+        clouds[i].positionX += Math.random() * clouds[i].speed + clouds[i].speed;
+        cloudsBG[i].positionX += Math.random() * cloudsBG[i].speed + cloudsBG[i].speed;
         if (clouds[i].positionX > canvas.width) {
             clouds[i].positionX = -clouds[i].scaleX;
         }
