@@ -2,46 +2,48 @@ const canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
 const ctx: CanvasRenderingContext2D = canvas.getContext("2d")!;
 type RGB = `rgb(${number}, ${number}, ${number})`;
 
-function drawScene() {
 
-    // Sun
-    let s = 0;
-    do {
-        s++;
-        let pathSun = new Path2D();
-        let size = Math.random() * 5 + 50;
-        pathSun.ellipse(Math.random() * 50 + 1500, Math.random() * 50 + 100, size, size, Math.PI / 4, 0, 2 * Math.PI);
-        ctx.fillStyle = "#ffffe0";
-        ctx.fill(pathSun);
-    } while (s < 1);
+// Sun
+let s = 0;
+do {
+    s++;
+    let pathSun = new Path2D();
+    let size = Math.random() * 5 + 50;
+    pathSun.ellipse(Math.random() * 50 + 1500, Math.random() * 50 + 100, size, size, Math.PI / 4, 0, 2 * Math.PI);
+    ctx.fillStyle = "#ffffe0";
+    ctx.fill(pathSun);
+} while (s < 1);
 
-    // Background
-    let k = 0;
-    do {
-        k++;
-        let bgR = Math.random() * 15 + 155;
-        let bgG = Math.random() * 15 + 195;
-        let bgB = Math.random() * 15 + 175;
-        let pathBG = new Path2D();
-        let size = Math.random() * 75 + 720;
-        pathBG.ellipse(Math.random() * 1900, Math.random() * 100 + 1350, size, size, Math.PI / 4, 0, 2 * Math.PI);
-        ctx.fillStyle = "rgb(" + bgR + ", " + bgG + "," + bgB + ")";
-        ctx.fill(pathBG);
-    } while (k < 10);
 
-    // Clouds Background
-    interface CloudAttributesBG {
-        positionX: number;
-        positionY: number;
-        scaleX: number;
-        scaleY: number;
-        cloudD: number;
-        color: number;
+// Clouds Foreground
+interface CloudAttributes {
+    positionX: number;
+    positionY: number;
+    scaleX: number;
+    scaleY: number;
+    cloudD: number;
+    color: number;
+    speed: number;
+}
+
+let clouds: CloudAttributes[] = [];
+let cloudsBG: CloudAttributes[] = [];
+
+    // Clouds
+    for (let i: number = 0; i < 3; i++) {
+        clouds.push({
+            positionX: Math.random() * 1920,
+            positionY: Math.random() * 100 + 100,
+            scaleX: Math.random() * 1 + 4,
+            scaleY: Math.random() * 1 + 7,
+            cloudD: Math.random() * 25 + 35,
+            color: Math.random() * 25 + 205,
+            speed: 1,
+        });
     }
 
-    let cloudsBG: CloudAttributesBG[] = [];
-
-    for (let wbg: number = 0; wbg < 8; wbg++) {
+    // Clouds
+    for (let i: number = 0; i < 8; i++) {
         cloudsBG.push({
             positionX: Math.random() * 1920,
             positionY: Math.random() * 50 + 150,
@@ -49,8 +51,27 @@ function drawScene() {
             scaleY: Math.random() * 1 + 5,
             cloudD: Math.random() * 25 + 75,
             color: Math.random() * 25 + 175,
+            speed: 0.5,
         });
     }
+
+
+function drawClouds() {
+    function drawCloud(): void {
+        for (let c: number = 0; c < clouds.length; c++) {
+            let pathCloud = new Path2D();
+            pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
+            ctx.fill(pathCloud);
+            for (let cl: number = 0; cl < clouds[c].cloudD; cl++) {
+                let pathCD = new Path2D;
+                pathCD.ellipse(clouds[c].positionX + (Math.random() * 200) - (Math.random() * 200), clouds[c].positionY + (Math.random() * 100) - (Math.random() * 75), 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+                ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
+                ctx.fill(pathCD);
+            }
+        }
+    }
+
 
     function drawCloudBG(): void {
         for (let cbg: number = 0; cbg < cloudsBG.length; cbg++) {
@@ -69,6 +90,26 @@ function drawScene() {
     }
 
     drawCloudBG();
+    drawCloud();
+
+}
+
+// Background
+function drawBgScene() {
+
+    let k = 0;
+    do {
+        k++;
+        let bgR = Math.random() * 15 + 155;
+        let bgG = Math.random() * 15 + 195;
+        let bgB = Math.random() * 15 + 175;
+        let pathBG = new Path2D();
+        let size = Math.random() * 75 + 720;
+        pathBG.ellipse(Math.random() * 1900, Math.random() * 100 + 1350, size, size, Math.PI / 4, 0, 2 * Math.PI);
+        ctx.fillStyle = "rgb(" + bgR + ", " + bgG + "," + bgB + ")";
+        ctx.fill(pathBG);
+    } while (k < 10);
+
 
     // Middleground
     let j = 0;
@@ -148,46 +189,6 @@ function drawScene() {
         ctx.fill(pathFG);
     } while (i < 120);
 
-    // Clouds Foreground
-    interface CloudAttributes {
-        positionX: number;
-        positionY: number;
-        scaleX: number;
-        scaleY: number;
-        cloudD: number;
-        color: number;
-        speed: number;
-    }
-
-    let clouds: CloudAttributes[] = [];
-
-    for (let w: number = 0; w < 3; w++) {
-        clouds.push({
-            positionX: Math.random() * 1920,
-            positionY: Math.random() * 100 + 100,
-            scaleX: Math.random() * 1 + 4,
-            scaleY: Math.random() * 1 + 7,
-            cloudD: Math.random() * 25 + 35,
-            color: Math.random() * 25 + 205,
-            speed: 0.1,
-        });
-    }
-
-    function drawCloud(): void {
-        for (let c: number = 0; c < clouds.length; c++) {
-            let pathCloud = new Path2D();
-            pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
-            ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
-            ctx.fill(pathCloud);
-            for (let cl: number = 0; cl < clouds[c].cloudD; cl++) {
-                let pathCD = new Path2D;
-                pathCD.ellipse(clouds[c].positionX + (Math.random() * 200) - (Math.random() * 200), clouds[c].positionY + (Math.random() * 100) - (Math.random() * 75), 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
-                ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
-                ctx.fill(pathCD);
-            }
-        }
-    }
-
     interface TreeAttributes {
         positionX: number;
         positionY: number;
@@ -233,14 +234,31 @@ function drawScene() {
             }
         }
     }
-
-    drawCloud();
     drawTree();
 }
 
-function animateScene() {
+drawBgScene();
+let imgData: ImageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+
+function updateClouds(_deltaTime: number) {
+    for (let i: number = 0; i < clouds.length; i++) {
+        clouds[i].positionX += Math.random()*clouds[i].speed + clouds[i].speed;
+        cloudsBG[i].positionX += Math.random()*cloudsBG[i].speed + cloudsBG[i].speed;
+        if (clouds[i].positionX > canvas.width) {
+            clouds[i].positionX = -clouds[i].scaleX;
+        }
+    }
+}
+
+let previousFrameTime: number = 0;
+function animateScene(_elapsedTime: number) {
+    let currentFrameDeltaTime: number = (_elapsedTime - previousFrameTime) / 1000;
+    previousFrameTime = _elapsedTime;
+
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawScene();
+    ctx.putImageData(imgData, 0, 0);
+    updateClouds(currentFrameDeltaTime);
+    drawClouds();
     requestAnimationFrame(animateScene);
 }
 
