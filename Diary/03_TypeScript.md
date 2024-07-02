@@ -225,3 +225,27 @@
             return this.items.some(item => item.name === name);
         }
     }
+
+
+## Animation: Time Signal
+
+### setTimeout
+
+    setTimeout(exampleFunction, t) // Does exampleFunction after t * milliseconds
+
+### setInterval
+
+    setInterval(exampleFunction, ms) // Does exampleFunction every t * milliseconds
+
+### requestAnimation
+
+    const object = document.getElementById('ID');
+    let leftpos = 0;
+
+    function moveObject(timestamp){
+        leftpos += 5;
+        object.style.left = leftpos + 'px';
+        requestAnimationFrame(moveObject);
+    }   
+
+    requestAnimationFrame(moveObject); 
