@@ -46,7 +46,7 @@ for (let i: number = 0; i < 3; i++) {
         scaleY: Math.random() * 10 + 30,
         cloudD: Math.random() * 25 + 35,
         color: Math.random() * 25 + 205,
-        speed: Math.random()*1+1,
+        speed: 0.5,
     });
     console.log(clouds[i]);
 }
@@ -72,7 +72,7 @@ for (let i: number = 0; i < 8; i++) {
         scaleY: Math.random() * 10 + 70,
         cloudD: Math.random() * 25 + 75,
         color: Math.random() * 25 + 175,
-        speed: Math.random() * 1 + 1,
+        speed: 0.7,
     });
 }
 
@@ -256,13 +256,13 @@ function updateClouds(_deltaTime: number) {
     for (let i: number = 0; i < clouds.length; i++) {
         clouds[i].positionX += clouds[i].speed;
         cloudsBG[i].positionX += cloudsBG[i].speed;
-        if (clouds[i].positionX > canvas.width) {
+        if (clouds[i].positionX > canvas.width + clouds[i].scaleX) {
             clouds[i].positionX = -clouds[i].scaleX;
             cloudsBG[i].positionX = -cloudsBG[i].scaleX;
         }
         for (let j: number = 0; j < clArea.length; j++) {
             clArea[j].x += clouds[i].speed;
-            if (clArea[j].x > canvas.width) {
+            if (clArea[j].x > canvas.width + clArea[j].sizeX) {
                 clArea[j].x = -clArea[j].sizeX;
             }
     }
