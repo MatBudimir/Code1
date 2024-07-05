@@ -13,57 +13,64 @@ do {
 } while (s < 1);
 let clouds = [];
 let cloudsBG = [];
+let clArea = [];
 // Clouds
 for (let i = 0; i < 3; i++) {
     clouds.push({
         positionX: Math.random() * 1920,
         positionY: Math.random() * 100 + 100,
-        scaleX: Math.random() * 1 + 4,
-        scaleY: Math.random() * 1 + 7,
+        scaleX: Math.random() * 10 + 40,
+        scaleY: Math.random() * 10 + 30,
         cloudD: Math.random() * 25 + 35,
         color: Math.random() * 25 + 205,
-        speed: 1,
+        speed: 0.5,
     });
+    console.log(clouds[i]);
+}
+for (let j = 0; j < clouds.length; j++) {
+    for (let i = 0; i < clouds[j].cloudD; i++) {
+        clArea.push({
+            x: clouds[j].positionX + (Math.random() * 200) - (Math.random() * 200),
+            y: clouds[j].positionY + (Math.random() * 100) - (Math.random() * 75),
+            sizeX: clouds[j].scaleX * (Math.random() * 1 + 1),
+            sizeY: clouds[j].scaleX * (Math.random() * 1 + 0.5),
+        });
+        console.log(clArea[i]);
+    }
 }
 // Clouds
 for (let i = 0; i < 8; i++) {
     cloudsBG.push({
         positionX: Math.random() * 1920,
         positionY: Math.random() * 50 + 150,
-        scaleX: Math.random() * 1 + 2,
-        scaleY: Math.random() * 1 + 5,
+        scaleX: Math.random() * 25 + 10,
+        scaleY: Math.random() * 10 + 70,
         cloudD: Math.random() * 25 + 75,
         color: Math.random() * 25 + 175,
-        speed: 0.5,
+        speed: 0.7,
     });
 }
 function drawClouds() {
     function drawCloud() {
         for (let c = 0; c < clouds.length; c++) {
             let pathCloud = new Path2D();
-            pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+            pathCloud.ellipse(clouds[c].positionX, clouds[c].positionY, clouds[c].scaleX, clouds[c].scaleY, Math.PI / 1, 0, 2 * Math.PI);
             ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
             ctx.fill(pathCloud);
-            for (let cl = 0; cl < clouds[c].cloudD; cl++) {
+            for (let a = 0; a < clArea.length; a++) {
                 let pathCD = new Path2D;
-                pathCD.ellipse(clouds[c].positionX + (Math.random() * 200) - (Math.random() * 200), clouds[c].positionY + (Math.random() * 100) - (Math.random() * 75), 10 * clouds[c].scaleX, 10 * clouds[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+                pathCD.ellipse(clArea[a].x, clArea[a].y, clArea[a].sizeX, clArea[a].sizeY, Math.PI / 1, 0, 2 * Math.PI);
                 ctx.fillStyle = "rgb(" + clouds[c].color + ", " + clouds[c].color + "," + clouds[c].color + ")";
                 ctx.fill(pathCD);
             }
         }
     }
     function drawCloudBG() {
-        for (let cbg = 0; cbg < cloudsBG.length; cbg++) {
+        for (let c = 0; c < cloudsBG.length; c++) {
             let pathCloudBG = new Path2D();
-            pathCloudBG.ellipse(cloudsBG[cbg].positionX, cloudsBG[cbg].positionY, 10 * cloudsBG[cbg].scaleX, 10 * cloudsBG[cbg].scaleY, Math.PI / 2, 0, 2 * Math.PI);
-            ctx.fillStyle = "rgb(" + cloudsBG[cbg].color + ", " + cloudsBG[cbg].color + "," + cloudsBG[cbg].color + ")";
+            pathCloudBG.ellipse(cloudsBG[c].positionX, cloudsBG[c].positionY, cloudsBG[c].scaleX, cloudsBG[c].scaleY, Math.PI / 2, 0, 2 * Math.PI);
+            ctx.fillStyle = "rgb(" + cloudsBG[c].color + ", " + cloudsBG[c].color + "," + cloudsBG[c].color + ")";
             ctx.fill(pathCloudBG);
-            for (let clbg = 0; clbg < cloudsBG[cbg].cloudD; clbg++) {
-                let pathCDBG = new Path2D;
-                pathCDBG.ellipse(cloudsBG[cbg].positionX + (Math.random() * 100) - (Math.random() * 100), cloudsBG[cbg].positionY + (Math.random() * 50) - (Math.random() * 35), 10 * cloudsBG[cbg].scaleX, 10 * cloudsBG[cbg].scaleY, Math.PI / 2, 0, 2 * Math.PI);
-                ctx.fillStyle = "rgb(" + cloudsBG[cbg].color + ", " + cloudsBG[cbg].color + "," + cloudsBG[cbg].color + ")";
-                ctx.fill(pathCDBG);
-            }
         }
     }
     drawCloudBG();
@@ -174,10 +181,17 @@ drawBgScene();
 let imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
 function updateClouds(_deltaTime) {
     for (let i = 0; i < clouds.length; i++) {
-        clouds[i].positionX += Math.random() * clouds[i].speed + clouds[i].speed;
-        cloudsBG[i].positionX += Math.random() * cloudsBG[i].speed + cloudsBG[i].speed;
-        if (clouds[i].positionX > canvas.width) {
+        clouds[i].positionX += clouds[i].speed;
+        cloudsBG[i].positionX += cloudsBG[i].speed;
+        if (clouds[i].positionX > canvas.width + clouds[i].scaleX) {
             clouds[i].positionX = -clouds[i].scaleX;
+            cloudsBG[i].positionX = -cloudsBG[i].scaleX;
+        }
+        for (let j = 0; j < clArea.length; j++) {
+            clArea[j].x += clouds[i].speed;
+            if (clArea[j].x > canvas.width + clArea[j].sizeX) {
+                clArea[j].x = -clArea[j].sizeX;
+            }
         }
     }
 }
@@ -192,3 +206,4 @@ function animateScene(_elapsedTime) {
     requestAnimationFrame(animateScene);
 }
 requestAnimationFrame(animateScene);
+//# sourceMappingURL=paint.js.map
