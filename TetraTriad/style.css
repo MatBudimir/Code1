@@ -1,0 +1,98 @@
+body{
+    display: flex;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    text-align: center;
+}
+
+.header {
+    margin: 20px;
+}
+
+.board {
+    display: grid;
+    margin: 1%;
+    align-self: center;
+    width: fit-content;
+    gap: 2px;
+    padding: 0.5%;
+    background-color: #333;
+}
+
+#cell {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell.player1 {
+    background-color: red;
+}
+
+.cell.player2 {
+    background-color: yellow;
+}
+
+#player1 {
+    position: absolute;
+    top: 5%;
+    left: 2%;
+    display: grid;
+    width: 15%;
+    height: 90%;
+    background-color: beige;
+    border: thick dotted black;
+    align-content: center;
+    justify-content: center;
+}
+
+#player2 {
+    position: absolute;
+    top: 5%;
+    right: 2%;
+    display: grid;
+    width: 15%;
+    height: 90%;
+    background-color: beige;
+    border: thick dotted black;
+    align-content: center;
+    justify-content: center;
+}
+
+#card {
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+}
+
+#info {
+        display: grid;
+        margin: 1%;
+        align-self: center;
+        width: fit-content;
+        gap: 2px;
+        padding: 0.5%;
+        grid-template-columns: 2;
+    }
+
+#p1 {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-column: 1;
+}
+
+#p2 {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    grid-column: 2;
+}
