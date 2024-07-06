@@ -67,14 +67,44 @@ window.addEventListener("load", loadHandler);
 function loadHandler(_event) {
     let startButton = document.getElementById("startButton");
     startButton.addEventListener("click", startGame);
-}
-function handleLoad(_event) {
-    let card = document.querySelector("div#card");
+    let card = _event.target;
     card.addEventListener("mousedown", selectCard);
 }
 function selectCard(_event) {
-    console.log(_event);
+    console.log(_event.target);
     let targetCard = _event.target;
+    console.log(targetCard);
+    if (targetCard == document.getElementById("card")) {
+        targetCard.hidden = true;
+        let elemBelow = document.elementFromPoint(_event.clientX, _event.clientY);
+        targetCard.hidden = false;
+        let shiftX = _event.clientX - targetCard.getBoundingClientRect().left;
+        let shiftY = _event.clientY - targetCard.getBoundingClientRect().top;
+        targetCard.style.position = 'absolute';
+        targetCard.style.width = "50px";
+        targetCard.style.height = "50px";
+        targetCard.style.zIndex = "1";
+        document.body.append(targetCard);
+        function moveAt(pageX, pageY) {
+            targetCard.style.left = pageX - shiftX + 'px';
+            targetCard.style.top = pageY - shiftY + 'px';
+        }
+        moveAt(_event.pageX, _event.pageY);
+        function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+        }
+        document.addEventListener('mousemove', onMouseMove);
+        targetCard.onmouseup = function () {
+            document.removeEventListener('mousemove', onMouseMove);
+            targetCard.onmouseup = null;
+        };
+        targetCard.ondragstart = function () {
+            return false;
+        };
+    }
+    else {
+        console.log("else");
+    }
 }
 function placeCard(_event) {
     let targetSquare = _event.target;
@@ -82,6 +112,7 @@ function placeCard(_event) {
 }
 // Start Game
 function startGame(_event) {
+    cards.length = 0;
     dealCards();
     console.log(cards);
 }

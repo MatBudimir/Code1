@@ -108,21 +108,65 @@ window.addEventListener("load", loadHandler)!;
 function loadHandler(_event: Event)
 {
     let startButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("startButton");
-
     startButton.addEventListener("click", startGame);
-}
 
-function handleLoad(_event: Event): void
-{
-    let card: HTMLElement = <HTMLElement>document.querySelector("div#card");
-    card.addEventListener("mousedown", selectCard);
+    let card: HTMLDivElement = <HTMLDivElement>_event.target;
+    card.addEventListener("mousedown", selectCard)!;
 }
 
 function selectCard(_event: MouseEvent)
 {
-    console.log(_event);
+    console.log(_event.target);
     let targetCard: HTMLElement = <HTMLElement>_event.target;
+    console.log(targetCard);
+    if (targetCard == <HTMLDivElement>document.getElementById("card"))
+    {
+        targetCard.hidden = true;
+
+        let elemBelow = document.elementFromPoint(_event.clientX, _event.clientY);
+
+        targetCard.hidden = false;
+
+        let shiftX = _event.clientX - targetCard.getBoundingClientRect().left;
+        let shiftY = _event.clientY - targetCard.getBoundingClientRect().top;
+
+        targetCard.style.position = 'absolute';
+        targetCard.style.width = "50px";
+        targetCard.style.height = "50px";
+        targetCard.style.zIndex = "1";
+
+        document.body.append(targetCard);
+
+        function moveAt(pageX: number, pageY: number)
+        {
+            targetCard.style.left = pageX - shiftX + 'px';
+            targetCard.style.top = pageY - shiftY + 'px';
+        }
+
+        moveAt(_event.pageX, _event.pageY);
+
+        function onMouseMove(event: any)
+        {
+            moveAt(event.pageX, event.pageY);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        targetCard.onmouseup = function ()
+        {
+            document.removeEventListener('mousemove', onMouseMove);
+            targetCard.onmouseup = null;
+        };
+
+        targetCard.ondragstart = function ()
+        {
+            return false;
+        };
+    } else {
+       console.log("else");
+    }
 }
+
 
 function placeCard(_event: MouseEvent)
 {
@@ -133,6 +177,7 @@ function placeCard(_event: MouseEvent)
 // Start Game
 function startGame(_event: MouseEvent)
 {
+    cards.length = 0;
     dealCards();
     console.log(cards);
 }
