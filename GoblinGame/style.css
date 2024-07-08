@@ -1,0 +1,119 @@
+.indie-flower-regular {
+    font-family: "Indie Flower", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .schoolbell-regular {
+    font-family: "Schoolbell", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .klee-one-regular {
+    font-family: "Klee One", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    --s: 80px; /* control the size */
+    --c: #744c28;
+    
+    --_g: 
+      #0000 calc(-650%/13) calc(50%/13),var(--c) 0 calc(100%/13),
+      #0000 0 calc(150%/13),var(--c) 0 calc(200%/13),
+      #0000 0 calc(250%/13),var(--c) 0 calc(300%/13);
+    --_g0: repeating-linear-gradient( 45deg,var(--_g));
+    --_g1: repeating-linear-gradient(-45deg,var(--_g));
+    background:
+      var(--_g0),var(--_g0) var(--s) var(--s),
+      var(--_g1),var(--_g1) var(--s) var(--s) #81722c;
+    background-size: calc(2*var(--s)) calc(2*var(--s));
+}
+
+.text{
+    display: flex;
+    font-family: "Klee One", cursive;
+    font-size: 1.5rem;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    height: 75%;
+    width: 30%;
+    margin-top: 2%;
+    padding: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+    text-align: center;
+    background-color: white;
+    border-top-left-radius: 5%;
+    border-top-right-radius: 5%;
+}
+
+.gradient-overlay {
+    height: 2%;
+    width: 30%;
+    padding-left: 2%;
+    padding-right: 2%;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, white, #99a389);
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
+    height: 25%;
+    width: 30%;
+    align-self: center;
+    align-items: center;
+    text-align: left;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-bottom: 2%;
+    border-bottom-left-radius: 5%;
+    border-bottom-right-radius: 5%;
+    background-color: #99a389;
+}
+.choice {
+    font-family: "Schoolbell", cursive;
+    font-size: 1.2rem;
+    justify-content: left;
+    align-items: left;
+    margin: 0 10px;
+    padding: 10px 20px;
+    background-color: #99a389;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+.choice:hover {
+    border: 1px solid #333;
+    background-color: rgba(50, 50, 50, 0.1);
+}
+
+.choice:active {
+    transform: translateY(1px);
+    border: 1px solid #333;
+
+}
+
+#health {
+    position: absolute;
+    top: 1.6%;
+    left: 0.9%;
+    font-size: 200%;
+    text-shadow: 1px 1px rgba(0, 0, 0, 0.5); 
+    color: rgb(206, 28, 28);
+    background-color: rgba(0, 0, 0, 0.25);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
